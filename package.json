@@ -1,0 +1,67 @@
+{
+  "name": "simple-adf-formatter",
+  "version": "0.1.0",
+  "license": "Apache-2.0",
+  "author": "Wolfgang Werner",
+  "repository": {
+		"type": "git",
+		"url": "git@github.com:Dixa-public/simple-adf-formatter.git"
+	},
+  "bugs": {
+    "url": "https://github.com/Dixa-public/simple-adf-formatter/issues"
+  },
+  "main": "dist/index.js",
+  "module": "dist/simple-adf-formatter.esm.js",
+  "typings": "dist/index.d.ts",
+  "files": [
+    "dist",
+    "src"
+  ],
+  "scripts": {
+    "analyze": "size-limit --why",
+    "build": "dts build",
+    "lint": "dts lint src test",
+    "prepare": "dts build",
+    "size": "size-limit",
+    "start": "dts watch",
+    "test": "dts test"
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "dts lint src test"
+    }
+  },
+  "prettier": {
+    "printWidth": 80,
+    "semi": true,
+    "singleQuote": true,
+    "trailingComma": "es5"
+  },
+  "jest": {
+    "testEnvironment": "node"
+  },
+  "peerDependencies": {},
+	"engines": {
+		"node": ">=14.17.0",
+    "npm": ">=7"
+	},
+  "size-limit": [
+    {
+      "path": "dist/simple-adf-formatter.cjs.production.min.js",
+      "limit": "10 KB"
+    },
+    {
+      "path": "dist/simple-adf-formatter.esm.js",
+      "limit": "10 KB"
+    }
+  ],
+  "devDependencies": {
+    "@size-limit/preset-small-lib": "^8.1.0",
+    "@tsconfig/recommended": "^1.0.1",
+    "dts-cli": "^1.6.0",
+    "husky": "^8.0.1",
+    "size-limit": "^8.1.0",
+    "tslib": "^2.4.0",
+    "typescript": "^4.8.3"
+  }
+}
