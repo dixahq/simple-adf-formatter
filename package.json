@@ -3,6 +3,13 @@
   "version": "0.1.0",
   "license": "Apache-2.0",
   "author": "Wolfgang Werner",
+  "repository": {
+		"type": "git",
+		"url": "git@github.com:Dixa-public/simple-adf-formatter.git"
+	},
+  "bugs": {
+    "url": "https://github.com/Dixa-public/simple-adf-formatter/issues"
+  },
   "main": "dist/index.js",
   "module": "dist/simple-adf-formatter.esm.js",
   "typings": "dist/index.d.ts",
@@ -34,9 +41,10 @@
     "testEnvironment": "node"
   },
   "peerDependencies": {},
-  "engines": {
-    "node": ">=12"
-  },
+	"engines": {
+		"node": ">=14.17.0",
+    "npm": ">=7"
+	},
   "size-limit": [
     {
       "path": "dist/simple-adf-formatter.cjs.production.min.js",
