@@ -9,20 +9,20 @@ application running in the browser.
 
 ## 🎨 Design
 
-* Small runtime size: `simple-adf-builder`'s size is `< 1kB`. Atlassian's [adf-utils](https://www.npmjs.com/package/@atlaskit/adf-utils) weighs > 550kB.
-* No external dependencies: `simple-adf-builder` has no external dependencies.
+* Small runtime size: `simple-adf-formatter`'s size is `< 1kB`. Atlassian's [adf-utils](https://www.npmjs.com/package/@atlaskit/adf-utils) weighs > 550kB.
+* No external dependencies: `simple-adf-formatter` has no external dependencies.
   Atlassian libraries bundle `@babel/runtime` and additional proprietary
   libraries from Atlassian.
 * Understandable: Writing formatters producing arbitrary output should be
-  simple. `simple-adf-builder` comes with examples for popular UI frameworks.
+  simple. `simple-adf-formatter` comes with examples for popular UI frameworks.
   The formatter API surface is tiny and nicely typed to allow better code completion. The
   Atlassian documentation for `adf-utils` seems not to exist, the ADF reference
   points to the deprecated `adf-builder` library.
 * Non-opinionated: 
-  * `simple-adf-builder` does not make assumptions on which types your
+  * `simple-adf-formatter` does not make assumptions on which types your
     formatters produce. You can create `strings`,  Markdown, HTML, React or JSX
     elements, Vue components or word counts and document outlines.
-  * `simple-adf-builder` does not implement the complete ADF specification.
+  * `simple-adf-formatter` does not implement the complete ADF specification.
     While all ADF types and markup options are supported, we don't restrict
     formatters from handling more or less markup options than the (current)
     specification allows. We also don't limit which types are allowed to be
