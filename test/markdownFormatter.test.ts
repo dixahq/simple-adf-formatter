@@ -192,18 +192,30 @@ The end.
     expect(formatAdf(adf,markdownFormatter)).toBe(expectedMarkdown);
   });
   it('should support headings', () => {
-    const expectedMarkdown = `# Heading 1
+    const expectedMarkdown = `
+# Heading 1
+
 Text 1
+
 ## Heading 2
+
 Text 1.1
+
 ### Heading 3
+
 Text 1.1.1
+
 #### Heading 4
+
 Text 1.1.1.1
 Text 1.1.1.2
+
 ##### Heading 5
+
 Text 1.1.1.1.1
+
 ###### Heading 6
+
 Text 1.1.1.1.1.1
 `
 const result = formatAdf(adf, markdownFormatter);
@@ -500,9 +512,9 @@ super<sup>script</sup>
         }
       ]
     }
-
-    const expectedMarkdown = 'Code follows.\n```\n10 PRINT "hah hah"\n20 GOTO 10\n```';
-
+    
+    const expectedMarkdown = 'Code follows.\n\n```\n10 PRINT "hah hah"\n20 GOTO 10\n```\n';
+    
     expect(formatAdf(adf,markdownFormatter)).toBe(expectedMarkdown);
   });  
   
@@ -532,11 +544,6 @@ super<sup>script</sup>
                         {
                           "type": "text",
                           "text": "A",
-                          "marks": [
-                            {
-                              "type": "strong"
-                            }
-                          ]
                         }
                       ]
                     }
@@ -552,11 +559,6 @@ super<sup>script</sup>
                         {
                           "type": "text",
                           "text": "B",
-                          "marks": [
-                            {
-                              "type": "strong"
-                            }
-                          ]
                         }
                       ]
                     }
@@ -638,11 +640,11 @@ super<sup>script</sup>
         }
       ]
     }
-
+    
     const expectedMarkdown = `<table>
 <tr>
-  <td>**A**
-  <td>**B**
+  <th>A
+  <th>B
 <tr>
   <td>A:1
   <td>B:1
@@ -651,8 +653,416 @@ super<sup>script</sup>
   <td>B:2
 </table>
 `;
+  
+  const result = formatAdf(adf,markdownFormatter);
+  expect(result).toBe(expectedMarkdown);
+});
 
-    const result = formatAdf(adf,markdownFormatter);
-    expect(result).toBe(expectedMarkdown);
-  });
+it('should transform larger documents correctly', () => {
+  const adf : ADFEntity = {
+    "version": 1,
+    "type": "doc",
+    "content": [
+      {
+        "type": "heading",
+        "attrs": {
+          "level": 1
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": "ADF Test"
+          }
+        ]
+      },
+      {
+        "type": "heading",
+        "attrs": {
+          "level": 2
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": "Text"
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "Text "
+          },
+          {
+            "type": "text",
+            "text": "with",
+            "marks": [
+              {
+                "type": "strong"
+              }
+            ]
+          },
+          {
+            "type": "text",
+            "text": " "
+          },
+          {
+            "type": "text",
+            "text": "markup",
+            "marks": [
+              {
+                "type": "em"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "type": "heading",
+        "attrs": {
+          "level": 2
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": "Lists"
+          }
+        ]
+      },
+      {
+        "type": "bulletList",
+        "content": [
+          {
+            "type": "listItem",
+            "content": [
+              {
+                "type": "paragraph",
+                "content": [
+                  {
+                    "type": "text",
+                    "text": "un-"
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "type": "listItem",
+            "content": [
+              {
+                "type": "paragraph",
+                "content": [
+                  {
+                    "type": "text",
+                    "text": "ordered"
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "type": "listItem",
+            "content": [
+              {
+                "type": "paragraph",
+                "content": [
+                  {
+                    "type": "text",
+                    "text": "list"
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "type": "orderedList",
+        "content": [
+          {
+            "type": "listItem",
+            "content": [
+              {
+                "type": "paragraph",
+                "content": [
+                  {
+                    "type": "text",
+                    "text": "numbered"
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "type": "listItem",
+            "content": [
+              {
+                "type": "paragraph",
+                "content": [
+                  {
+                    "type": "text",
+                    "text": "list"
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "type": "heading",
+        "attrs": {
+          "level": 2
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": "Links"
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "https://xkcd.com",
+            "marks": [
+              {
+                "type": "link",
+                "attrs": {
+                  "href": "https://xkcd.com"
+                }
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "type": "heading",
+        "attrs": {
+          "level": 2
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": "Tables"
+          }
+        ]
+      },
+      {
+        "type": "table",
+        "attrs": {
+          "isNumberColumnEnabled": false,
+          "layout": "default",
+          "localId": "31672348-8738-4209-9135-a0c9d61c9828"
+        },
+        "content": [
+          {
+            "type": "tableRow",
+            "content": [
+              {
+                "type": "tableHeader",
+                "attrs": {},
+                "content": [
+                  {
+                    "type": "paragraph",
+                    "content": [
+                      {
+                        "type": "text",
+                        "text": "I",
+                      }
+                    ]
+                  }
+                ]
+              },
+              {
+                "type": "tableHeader",
+                "attrs": {},
+                "content": [
+                  {
+                    "type": "paragraph",
+                    "content": [
+                      {
+                        "type": "text",
+                        "text": "hate",
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "type": "tableRow",
+            "content": [
+              {
+                "type": "tableCell",
+                "attrs": {},
+                "content": [
+                  {
+                    "type": "paragraph",
+                    "content": [
+                      {
+                        "type": "text",
+                        "text": "tables"
+                      }
+                    ]
+                  }
+                ]
+              },
+              {
+                "type": "tableCell",
+                "attrs": {},
+                "content": [
+                  {
+                    "type": "paragraph",
+                    "content": [
+                      {
+                        "type": "text",
+                        "text": "in"
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "type": "tableRow",
+            "content": [
+              {
+                "type": "tableCell",
+                "attrs": {},
+                "content": [
+                  {
+                    "type": "paragraph",
+                    "content": [
+                      {
+                        "type": "text",
+                        "text": "markdown"
+                      }
+                    ]
+                  }
+                ]
+              },
+              {
+                "type": "tableCell",
+                "attrs": {},
+                "content": [
+                  {
+                    "type": "paragraph",
+                    "content": [
+                      {
+                        "type": "text",
+                        "text": "a lot"
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "type": "heading",
+        "attrs": {
+          "level": 2
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": "Code"
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "Inline "
+          },
+          {
+            "type": "text",
+            "text": "code",
+            "marks": [
+              {
+                "type": "code"
+              }
+            ]
+          },
+          {
+            "type": "text",
+            "text": " and"
+          }
+        ]
+      },
+      {
+        "type": "codeBlock",
+        "attrs": {
+          "language": "typescript"
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": "// a code block\n(code) => 'blocks'"
+          }
+        ]
+      }
+    ]
+  }
+  const result = formatAdf(adf,markdownFormatter);
+  console.log(result)
+  const expectedMarkdown = `
+# ADF Test
+
+
+## Text
+
+Text **with** *markup*
+
+## Lists
+
+
+- un-
+- ordered
+- list
+
+1. numbered
+1. list
+
+## Links
+
+[https://xkcd.com](https://xkcd.com)
+
+## Tables
+
+<table>
+<tr>
+  <th>I
+  <th>hate
+<tr>
+  <td>tables
+  <td>in
+<tr>
+  <td>markdown
+  <td>a lot
+</table>
+
+## Code
+
+Inline \`code\` and
+
+\`\`\`typescript
+// a code block
+(code) => 'blocks'
+\`\`\`
+`
+
+console.log(result)
+  expect(result).toBe(expectedMarkdown)
+});
 });
