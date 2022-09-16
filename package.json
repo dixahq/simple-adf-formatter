@@ -1,29 +1,27 @@
 {
+  "name": "simple-adf-formatter",
   "version": "0.1.0",
-  "license": "MIT",
+  "license": "Apache-2.0",
+  "author": "Wolfgang Werner",
   "main": "dist/index.js",
+  "module": "dist/simple-adf-formatter.esm.js",
   "typings": "dist/index.d.ts",
   "files": [
     "dist",
     "src"
   ],
-  "engines": {
-		"node": ">=14.17.0",
-    "npm": ">7"
-  },
   "scripts": {
-    "start": "tsdx watch",
-    "build": "tsdx build",
-    "test": "tsdx test",
-    "lint": "tsdx lint",
-    "prepare": "tsdx build",
+    "analyze": "size-limit --why",
+    "build": "dts build",
+    "lint": "dts lint src test",
+    "prepare": "dts build",
     "size": "size-limit",
-    "analyze": "size-limit --why"
+    "start": "dts watch",
+    "test": "dts test"
   },
-  "peerDependencies": {},
   "husky": {
     "hooks": {
-      "pre-commit": "tsdx lint"
+      "pre-commit": "dts lint src test"
     }
   },
   "prettier": {
@@ -32,9 +30,13 @@
     "singleQuote": true,
     "trailingComma": "es5"
   },
-  "name": "simple-adf-formatter",
-  "author": "Wolfgang Werner",
-  "module": "dist/simple-adf-formatter.esm.js",
+  "jest": {
+    "testEnvironment": "node"
+  },
+  "peerDependencies": {},
+  "engines": {
+    "node": ">=12"
+  },
   "size-limit": [
     {
       "path": "dist/simple-adf-formatter.cjs.production.min.js",
@@ -47,9 +49,10 @@
   ],
   "devDependencies": {
     "@size-limit/preset-small-lib": "^8.1.0",
+    "@tsconfig/recommended": "^1.0.1",
+    "dts-cli": "^1.6.0",
     "husky": "^8.0.1",
     "size-limit": "^8.1.0",
-    "tsdx": "^0.14.1",
     "tslib": "^2.4.0",
     "typescript": "^4.8.3"
   }

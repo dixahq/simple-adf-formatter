@@ -13,7 +13,7 @@ export const formatAdf = <T>(node: ADFEntity, formatter: Formatter<T>): T => {
    */
   const applyMarkup = (content: T) =>
     (node.marks || [])
-      .map(mark => ({
+      .map((mark) => ({
         formatterFunction: formatter.marks[node.type]?.[mark.type],
         mark,
       }))
@@ -33,13 +33,11 @@ export const formatAdf = <T>(node: ADFEntity, formatter: Formatter<T>): T => {
    *
    * @returns parameter-less function to process children
    */
-  const processChildren = (
-    node: ADFEntity,
-    formatter: Formatter<T>
-  ) => (): T[] =>
-    node.content // all block nodes have content
-      ? node.content.map(child => formatAdf(child, formatter))
-      : [];
+  const processChildren =
+    (node: ADFEntity, formatter: Formatter<T>) => (): T[] =>
+      node.content // all block nodes have content
+        ? node.content.map((child) => formatAdf(child, formatter))
+        : [];
 
   /*
    * Apply the composed markup function to the curried processChildren function

@@ -46,7 +46,7 @@ describe(`ADF parser sample`, () => {
       nodes: {
         doc: (_n, children) => children().join(''),
         paragraph: (_n, children) => children().join(''),
-        text: t => t.text || '',
+        text: (t) => t.text || '',
       },
       marks: {},
     });
@@ -62,7 +62,7 @@ describe(`ADF parser sample`, () => {
       nodes: {
         doc: toNestedString,
         paragraph: toNestedString,
-        text: e => e.type,
+        text: (e) => e.type,
       },
       marks: {},
     };
@@ -95,7 +95,7 @@ describe(`ADF parser sample`, () => {
     const formatter: Formatter<string | undefined> = {
       default: (_e, c) => c().join(''),
       nodes: {
-        text: t => t.text,
+        text: (t) => t.text,
       },
       marks: {},
     };
