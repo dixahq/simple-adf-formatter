@@ -49,7 +49,11 @@ export interface ADFEntity {
   [key: string]: any;
 }
 
-export type MarkMapper<T> = (mark: ADFEntityMark, next: () => T, parent: ADFEntity) => T;
+export type MarkMapper<T> = (
+  mark: ADFEntityMark,
+  next: () => T,
+  parent: ADFEntity
+) => T;
 export type NodeMapper<T> = (node: ADFEntity, processChildren: () => T[]) => T;
 export type Formatter<T> = {
   default: NodeMapper<T>;
