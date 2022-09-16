@@ -39,7 +39,7 @@ const simpleAdf: ADFEntity = {
   ],
 };
 
-describe(`ADF parser sample`, () => {
+describe(`ADF parsing`, () => {
   it('should strip markup', () => {
     const stripped = formatAdf(simpleAdf, {
       default: () => '',
@@ -101,6 +101,63 @@ describe(`ADF parser sample`, () => {
     };
 
     expect(formatAdf(adf, formatter)).toBe('my data');
+  });
+
+  it('should apply all marks', () => {
+    const adf : ADFEntity = {
+      "version": 1,
+      "type": "doc",
+      "content": [
+        {
+          "type": "paragraph",
+          "content": [
+            {
+              "type": "text",
+              "text": "outer ",
+              "marks": [
+                {
+                  "type": "strong"
+                }
+              ]
+            },
+            {
+              "type": "text",
+              "text": "inner",
+              "marks": [
+                {
+                  "type": "strong"
+                },
+                {
+                  "type": "em"
+                }
+              ]
+            },
+            {
+              "type": "text",
+              "text": " outer",
+              "marks": [
+                {
+                  "type": "strong"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    }
+
+    const formatter :Formatter<string> = {
+      default: (_node, children) => children().join('-'),
+      nodes: {},
+      marks: {
+        text: {
+          'em': (_mark,next) => `e(${next()})`,
+          'strong': (_mark,next) => `s(${next()})`
+        }
+      }
+    } 
+
+    expect(formatAdf(adf,formatter)).toBe('s()-e(s())-s()');
   });
 
   it('can exclude sub-trees per type', () => {
