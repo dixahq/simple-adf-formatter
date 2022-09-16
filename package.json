@@ -21,8 +21,8 @@
     "analyze": "size-limit --why",
     "build": "dts build",
     "lint": "dts lint src test",
-    "prepare": "dts build",
     "size": "size-limit",
+    "prepare": "dts build",
     "start": "dts watch",
     "test": "dts test"
   },
