@@ -107,8 +107,8 @@ describe(`ADF parser sample`, () => {
     const formatter: Formatter<string> = {
       default: () => '',
       nodes: {
-        doc: (_e, children) => children().join(''),
-        paragraph: () => 'p',
+        doc: (_e, children) => children().join(''), // recurse into children
+        paragraph: () => 'p', // output a fixed string
         text: () =>
           'This is never called, as paragraph does not call children()',
       },
