@@ -1,7 +1,17 @@
 import { formatAdf, markdownFormatter } from '../src';
-import {blockquoteAdf, inlineCodeAdf, headingsAdf, textMarkupAdf, linkAdf, codeBlockAdf, tablesAdf, largerAdf, bulletListAdf, orderedListAdf} from './adf.fixtures'
+import {
+  blockquoteAdf,
+  inlineCodeAdf,
+  headingsAdf,
+  textMarkupAdf,
+  linkAdf,
+  codeBlockAdf,
+  tablesAdf,
+  largerAdf,
+  bulletListAdf,
+  orderedListAdf,
+} from './adf.fixtures';
 describe(`ADF parsing`, () => {
- 
   it('should support quotes', () => {
     const expectedMarkdown = `A quote follows.
 > Honk
@@ -70,19 +80,18 @@ super<sup>script</sup>
 - one
 - two
 - nine
-`
+`;
     expect(formatAdf(bulletListAdf, markdownFormatter)).toBe(expectedMarkdown);
-  })
+  });
 
   it('should support numbered lists', () => {
     const expectedMarkdown = `
 1. one
 1. two
 1. nine
-`
-        expect(formatAdf(orderedListAdf, markdownFormatter)).toBe(expectedMarkdown);
-    
-  })
+`;
+    expect(formatAdf(orderedListAdf, markdownFormatter)).toBe(expectedMarkdown);
+  });
 
   it('should support code blocks', () => {
     const expectedMarkdown =
@@ -110,7 +119,6 @@ super<sup>script</sup>
   });
 
   it('should transform larger documents correctly', () => {
-    
     const result = formatAdf(largerAdf, markdownFormatter);
     const expectedMarkdown = `
 # ADF Test

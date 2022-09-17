@@ -26,7 +26,12 @@ export const jsxFormatter: Formatter<JSX.Element> = {
         <code key={nIdx + '.' + mIdx}>{next()}</code>
       ),
       strike: (_mark, next, _parent, nIdx, mIdx) => (
-        <span style={{textDecoration: 'line-through'}} key={nIdx + '.' + mIdx}>{next()}</span>
+        <span
+          style={{ textDecoration: 'line-through' }}
+          key={nIdx + '.' + mIdx}
+        >
+          {next()}
+        </span>
       ),
       subsup: (mark, next, _parent, nIdx, mIdx) => {
         switch (mark.attrs?.type) {

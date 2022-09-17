@@ -1,4 +1,4 @@
-import { ADFEntity } from "../src";
+import { ADFEntity } from '../src';
 
 export const headingsAdf: ADFEntity = {
   version: 1,
@@ -924,109 +924,109 @@ export const largerAdf: ADFEntity = {
 };
 
 export const bulletListAdf: ADFEntity = {
-  "version": 1,
-  "type": "doc",
-  "content": [
+  version: 1,
+  type: 'doc',
+  content: [
     {
-      "type": "bulletList",
-      "content": [
+      type: 'bulletList',
+      content: [
         {
-          "type": "listItem",
-          "content": [
+          type: 'listItem',
+          content: [
             {
-              "type": "paragraph",
-              "content": [
+              type: 'paragraph',
+              content: [
                 {
-                  "type": "text",
-                  "text": "one"
-                }
-              ]
-            }
-          ]
+                  type: 'text',
+                  text: 'one',
+                },
+              ],
+            },
+          ],
         },
         {
-          "type": "listItem",
-          "content": [
+          type: 'listItem',
+          content: [
             {
-              "type": "paragraph",
-              "content": [
+              type: 'paragraph',
+              content: [
                 {
-                  "type": "text",
-                  "text": "two"
-                }
-              ]
-            }
-          ]
+                  type: 'text',
+                  text: 'two',
+                },
+              ],
+            },
+          ],
         },
         {
-          "type": "listItem",
-          "content": [
+          type: 'listItem',
+          content: [
             {
-              "type": "paragraph",
-              "content": [
+              type: 'paragraph',
+              content: [
                 {
-                  "type": "text",
-                  "text": "nine"
-                }
-              ]
-            }
-          ]
-        }
-      ]
-    }
-  ]
-}
+                  type: 'text',
+                  text: 'nine',
+                },
+              ],
+            },
+          ],
+        },
+      ],
+    },
+  ],
+};
 
 export const orderedListAdf: ADFEntity = {
-  "version": 1,
-  "type": "doc",
-  "content": [
+  version: 1,
+  type: 'doc',
+  content: [
     {
-      "type": "orderedList",
-      "content": [
+      type: 'orderedList',
+      content: [
         {
-          "type": "listItem",
-          "content": [
+          type: 'listItem',
+          content: [
             {
-              "type": "paragraph",
-              "content": [
+              type: 'paragraph',
+              content: [
                 {
-                  "type": "text",
-                  "text": "one"
-                }
-              ]
-            }
-          ]
+                  type: 'text',
+                  text: 'one',
+                },
+              ],
+            },
+          ],
         },
         {
-          "type": "listItem",
-          "content": [
+          type: 'listItem',
+          content: [
             {
-              "type": "paragraph",
-              "content": [
+              type: 'paragraph',
+              content: [
                 {
-                  "type": "text",
-                  "text": "two"
-                }
-              ]
-            }
-          ]
+                  type: 'text',
+                  text: 'two',
+                },
+              ],
+            },
+          ],
         },
         {
-          "type": "listItem",
-          "content": [
+          type: 'listItem',
+          content: [
             {
-              "type": "paragraph",
-              "content": [
+              type: 'paragraph',
+              content: [
                 {
-                  "type": "text",
-                  "text": "nine"
-                }
-              ]
-            }
-          ]
-        }
-      ]
-    }
-  ]
-}
+                  type: 'text',
+                  text: 'nine',
+                },
+              ],
+            },
+          ],
+        },
+      ],
+    },
+  ],
+};

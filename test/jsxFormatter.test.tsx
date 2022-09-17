@@ -21,7 +21,7 @@ describe(`ADF parsing`, () => {
             <span>underlined</span>
           </u>
           <br />
-          <span style={{ "textDecoration": "line-through" }}>
+          <span style={{ textDecoration: 'line-through' }}>
             <span>strikethrough</span>
           </span>
           <br />
@@ -39,7 +39,7 @@ describe(`ADF parsing`, () => {
             <span>script</span>
           </sup>
           <br />
-          <span style={{ "textDecoration": "line-through" }}>
+          <span style={{ textDecoration: 'line-through' }}>
             <b>
               <i>
                 <span>eve</span>
@@ -47,7 +47,7 @@ describe(`ADF parsing`, () => {
             </b>
           </span>
           <sub>
-            <span style={{ "textDecoration": "line-through" }}>
+            <span style={{ textDecoration: 'line-through' }}>
               <b>
                 <i>
                   <span>ry</span>
@@ -55,7 +55,7 @@ describe(`ADF parsing`, () => {
               </b>
             </span>
           </sub>
-          <span style={{ "textDecoration": "line-through" }}>
+          <span style={{ textDecoration: 'line-through' }}>
             <b>
               <i>
                 <span>thi</span>
@@ -63,7 +63,7 @@ describe(`ADF parsing`, () => {
             </b>
           </span>
           <sup>
-            <span style={{ "textDecoration": "line-through" }}>
+            <span style={{ textDecoration: 'line-through' }}>
               <b>
                 <i>
                   <span>ng</span>
