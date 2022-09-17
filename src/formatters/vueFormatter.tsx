@@ -12,7 +12,6 @@ export const vueFormatter: Formatter<VNode | string> = {
     return h('div', getChildren());
   },
   nodes: {
-    // Note that the index params are required to satisfy the React `key` prop constraints.
     doc: (_node, children) => h('div', children()),
     paragraph: (_node, children) => h('p', children()),
     listItem: (_node, children) => h('li', children()),
