@@ -1,164 +1,13 @@
 /**
  * @jest-environment jsdom
  */
-import { ADFEntity, formatAdf, jsxFormatter } from '../src';
+import { formatAdf, jsxFormatter } from '../src';
 import React from 'react';
 import { create as render } from 'react-test-renderer';
+import { textMarkupAdf } from './adf.fixtures';
 
 describe(`ADF parsing`, () => {
   it('should support text markup', () => {
-    const adf: ADFEntity = {
-      version: 1,
-      type: 'doc',
-      content: [
-        {
-          type: 'paragraph',
-          content: [
-            {
-              type: 'text',
-              text: 'regular',
-            },
-            {
-              type: 'hardBreak',
-            },
-            {
-              type: 'text',
-              text: 'italic',
-              marks: [
-                {
-                  type: 'em',
-                },
-              ],
-            },
-            {
-              type: 'hardBreak',
-            },
-            {
-              type: 'text',
-              text: 'underlined',
-              marks: [
-                {
-                  type: 'underline',
-                },
-              ],
-            },
-            {
-              type: 'hardBreak',
-            },
-            {
-              type: 'text',
-              text: 'bold',
-              marks: [
-                {
-                  type: 'strong',
-                },
-              ],
-            },
-            {
-              type: 'hardBreak',
-            },
-            {
-              type: 'text',
-              text: 'sub',
-            },
-            {
-              type: 'text',
-              text: 'script',
-              marks: [
-                {
-                  type: 'subsup',
-                  attrs: {
-                    type: 'sub',
-                  },
-                },
-              ],
-            },
-            {
-              type: 'hardBreak',
-            },
-            {
-              type: 'text',
-              text: 'super',
-            },
-            {
-              type: 'text',
-              text: 'script',
-              marks: [
-                {
-                  type: 'subsup',
-                  attrs: {
-                    type: 'sup',
-                  },
-                },
-              ],
-            },
-            {
-              type: 'hardBreak',
-            },
-            {
-              type: 'text',
-              text: 'eve',
-              marks: [
-                {
-                  type: 'em',
-                },
-                {
-                  type: 'strong',
-                },
-              ],
-            },
-            {
-              type: 'text',
-              text: 'ry',
-              marks: [
-                {
-                  type: 'em',
-                },
-                {
-                  type: 'strong',
-                },
-                {
-                  type: 'subsup',
-                  attrs: {
-                    type: 'sub',
-                  },
-                },
-              ],
-            },
-            {
-              type: 'text',
-              text: 'thi',
-              marks: [
-                {
-                  type: 'em',
-                },
-                {
-                  type: 'strong',
-                },
-              ],
-            },
-            {
-              type: 'text',
-              text: 'ng',
-              marks: [
-                {
-                  type: 'em',
-                },
-                {
-                  type: 'strong',
-                },
-                {
-                  type: 'subsup',
-                  attrs: {
-                    type: 'sup',
-                  },
-                },
-              ],
-            },
-          ],
-        },
-      ],
-    };
     const expectedJsx = (
       <div>
         <p>
@@ -171,6 +20,10 @@ describe(`ADF parsing`, () => {
           <u>
             <span>underlined</span>
           </u>
+          <br />
+          <span style={{ "textDecoration": "line-through" }}>
+            <span>strikethrough</span>
+          </span>
           <br />
           <b>
             <span>bold</span>
@@ -186,35 +39,43 @@ describe(`ADF parsing`, () => {
             <span>script</span>
           </sup>
           <br />
-          <b>
-            <i>
-              <span>eve</span>
-            </i>
-          </b>
+          <span style={{ "textDecoration": "line-through" }}>
+            <b>
+              <i>
+                <span>eve</span>
+              </i>
+            </b>
+          </span>
           <sub>
-            <b>
-              <i>
-                <span>ry</span>
-              </i>
-            </b>
+            <span style={{ "textDecoration": "line-through" }}>
+              <b>
+                <i>
+                  <span>ry</span>
+                </i>
+              </b>
+            </span>
           </sub>
-          <b>
-            <i>
-              <span>thi</span>
-            </i>
-          </b>
-          <sup>
+          <span style={{ "textDecoration": "line-through" }}>
             <b>
               <i>
-                <span>ng</span>
+                <span>thi</span>
               </i>
             </b>
+          </span>
+          <sup>
+            <span style={{ "textDecoration": "line-through" }}>
+              <b>
+                <i>
+                  <span>ng</span>
+                </i>
+              </b>
+            </span>
           </sup>
         </p>
       </div>
     );
 
-    const result = formatAdf(adf, jsxFormatter);
+    const result = formatAdf(textMarkupAdf, jsxFormatter);
     expect(render(result).toJSON()).toEqual(render(expectedJsx).toJSON());
   });
 });

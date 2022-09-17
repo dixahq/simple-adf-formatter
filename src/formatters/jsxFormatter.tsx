@@ -1,6 +1,7 @@
 import React from 'react';
 import { Formatter } from '../';
 
+// Note that the index params are required to satisfy the React `key` prop constraints.
 export const jsxFormatter: Formatter<JSX.Element> = {
   default: (_node, children) => <>{children()}</>,
   nodes: {
@@ -23,6 +24,9 @@ export const jsxFormatter: Formatter<JSX.Element> = {
       ),
       code: (_mark, next, _parent, nIdx, mIdx) => (
         <code key={nIdx + '.' + mIdx}>{next()}</code>
+      ),
+      strike: (_mark, next, _parent, nIdx, mIdx) => (
+        <span style={{textDecoration: 'line-through'}} key={nIdx + '.' + mIdx}>{next()}</span>
       ),
       subsup: (mark, next, _parent, nIdx, mIdx) => {
         switch (mark.attrs?.type) {
