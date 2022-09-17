@@ -45,3 +45,4 @@ const jsxFormatter: Formatter<JSX.Element> = {
 * `yarn build`: Builds the package.
 * `yarn size`: Checks the resulting bundle size.
 * `yarn analyze`: Explains the bundle size.
+
