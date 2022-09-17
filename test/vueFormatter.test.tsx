@@ -13,8 +13,7 @@ import {
   textMarkupAdf,
 } from './adf.fixtures';
 import { h, VNode } from 'vue';
-import { mount } from '@vue/test-utils'
-
+import { mount } from '@vue/test-utils';
 
 describe(`Vue formatting`, () => {
   const tests: { feature: string; adf: ADFEntity; expectedComponent: VNode }[] =
@@ -155,7 +154,9 @@ describe(`Vue formatting`, () => {
       {
         feature: 'ordered lists',
         adf: orderedListAdf,
-        expectedComponent: h('div',[h('ol',[h('li','one'),h('li','two'),h('li','nine')])]),
+        expectedComponent: h('div', [
+          h('ol', [h('li', 'one'), h('li', 'two'), h('li', 'nine')]),
+        ]),
         // <div>
         //   <ol>
         //     <li>
@@ -173,9 +174,12 @@ describe(`Vue formatting`, () => {
     ];
 
   it.each(tests)('should support $feature', (test) => {
-    const wrap = (component: VNode | string) => mount({
-      render: () => component
-    })
-    expect(wrap(formatAdf(test.adf, vueFormatter)).html()).toEqual(wrap(test.expectedComponent).html());
+    const wrap = (component: VNode | string) =>
+      mount({
+        render: () => component,
+      });
+    expect(wrap(formatAdf(test.adf, vueFormatter)).html()).toEqual(
+      wrap(test.expectedComponent).html()
+    );
   });
 });
