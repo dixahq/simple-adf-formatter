@@ -1,7 +1,10 @@
+/**
+ * @jest-environment jsdom
+ */
 import { ADFEntity } from '../dist';
 import { formatAdf, jsxFormatter } from '../src';
 import React from 'react';
-//import { create as render } from 'react-test-renderer';
+import { create as render } from 'react-test-renderer';
 
 describe(`ADF parsing`, () => {
   it('should support text markup', () => {
@@ -209,11 +212,10 @@ describe(`ADF parsing`, () => {
             </b>
           </sup>
         </p>
-        <>FAIL</>
       </div>
     );
 
     const result = formatAdf(adf, jsxFormatter);
-    expect(result).toEqual(expectedJsx);
+    expect(render(result).toJSON()).toEqual(render(expectedJsx).toJSON());
   });
 });
