@@ -7,7 +7,7 @@ export const jsxFormatter: Formatter<JSX.Element> = {
     doc: (_node, children) => <div>{children()}</div>,
     paragraph: (_node, children) => <p>{children()}</p>,
     text: (node) => <span>{node.text}</span> ?? <span />,
-    hardBreak: () => <br />
+    hardBreak: () => <br />,
   },
   marks: {
     text: {

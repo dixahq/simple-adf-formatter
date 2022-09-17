@@ -3,7 +3,6 @@ import { formatAdf, jsxFormatter } from '../src';
 import React from 'react';
 //import { create as render } from 'react-test-renderer';
 
-
 describe(`ADF parsing`, () => {
   it('should support text markup', () => {
     const adf: ADFEntity = {
@@ -158,34 +157,63 @@ describe(`ADF parsing`, () => {
         },
       ],
     };
-    const expectedJsx = (<div>
-      <p>
-        <span>regular</span>
-        <br />
-        <i><span>italic</span></i>
-        <br />
-        <u><span>underlined</span></u>
-        <br />
-        <b><span>bold</span></b>
-        <br />
-        <span>sub</span>
-        <sub><span>script</span></sub>
-        <br />
-        <span>super</span>
-        <sup><span>script</span></sup>
-        <br />
-        <b><i><span>eve</span></i></b>
-        <sub><b><i><span>ry</span></i></b></sub>
-        <b><i><span>thi</span></i></b>
-        <sup><b><i><span>ng</span></i></b></sup>
-      </p>
-      <>FAIL</>
-    </div>)
-    
-   
+    const expectedJsx = (
+      <div>
+        <p>
+          <span>regular</span>
+          <br />
+          <i>
+            <span>italic</span>
+          </i>
+          <br />
+          <u>
+            <span>underlined</span>
+          </u>
+          <br />
+          <b>
+            <span>bold</span>
+          </b>
+          <br />
+          <span>sub</span>
+          <sub>
+            <span>script</span>
+          </sub>
+          <br />
+          <span>super</span>
+          <sup>
+            <span>script</span>
+          </sup>
+          <br />
+          <b>
+            <i>
+              <span>eve</span>
+            </i>
+          </b>
+          <sub>
+            <b>
+              <i>
+                <span>ry</span>
+              </i>
+            </b>
+          </sub>
+          <b>
+            <i>
+              <span>thi</span>
+            </i>
+          </b>
+          <sup>
+            <b>
+              <i>
+                <span>ng</span>
+              </i>
+            </b>
+          </sup>
+        </p>
+        <>FAIL</>
+      </div>
+    );
+
     const result = formatAdf(adf, jsxFormatter);
     expect(result).toEqual(expectedJsx);
   });
-
- 
 });
