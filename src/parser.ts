@@ -4,7 +4,11 @@ import { ADFEntity, Formatter } from './types';
  * Formats the given ADF node using the given formatter
  * @param node @param formatter @returns Formatted object of type T
  */
-export const formatAdf = <T>(node: ADFEntity, formatter: Formatter<T>, siblingIdx = 0): T => {
+export const formatAdf = <T>(
+  node: ADFEntity,
+  formatter: Formatter<T>,
+  siblingIdx = 0
+): T => {
   /*
    * Composes the applicable mark format functions for the current node.
    *
@@ -18,8 +22,9 @@ export const formatAdf = <T>(node: ADFEntity, formatter: Formatter<T>, siblingId
         mark,
       }))
       .reduce(
-        (prev, curr, idx) => () => 
-          curr.formatterFunction?.(curr.mark, prev, node, siblingIdx, idx) || content,
+        (prev, curr, idx) => () =>
+          curr.formatterFunction?.(curr.mark, prev, node, siblingIdx, idx) ||
+          content,
         () => content
       )();
 
@@ -44,6 +49,7 @@ export const formatAdf = <T>(node: ADFEntity, formatter: Formatter<T>, siblingId
    * and return the result.
    */
   const formatterOrDefault = formatter.nodes[node.type] || formatter.default;
-  return applyMarkup(formatterOrDefault(node, processChildren(node, formatter), siblingIdx))
-  ;
+  return applyMarkup(
+    formatterOrDefault(node, processChildren(node, formatter), siblingIdx)
+  );
 };

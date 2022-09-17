@@ -54,9 +54,13 @@ export type MarkMapper<T> = (
   next: () => T,
   parent: ADFEntity,
   nodeIdx: number,
-  markIdx: number,
+  markIdx: number
 ) => T;
-export type NodeMapper<T> = (node: ADFEntity, processChildren: () => T[], siblingIdx: number) => T;
+export type NodeMapper<T> = (
+  node: ADFEntity,
+  processChildren: () => T[],
+  siblingIdx: number
+) => T;
 export type Formatter<T> = {
   default: NodeMapper<T>;
   nodes: {
