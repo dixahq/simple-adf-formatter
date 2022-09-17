@@ -22,7 +22,7 @@
     "build": "dts build",
     "lint": "dts lint src test",
     "size": "size-limit",
-    "prepare": "husky install",
+    "prepare": "husky install .husky",
     "start": "dts watch",
     "test": "dts test"
   },
