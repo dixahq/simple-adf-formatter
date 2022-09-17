@@ -10,7 +10,7 @@ application running in the browser.
 ## 🎨 Design Goals
 
 * Make it trivial to render ADF documents into arbitrary formats.
-* Small runtime size: `simple-adf-formatter`'s size is `< 1kB`. Atlassian's [adf-utils](https://www.npmjs.com/package/@atlaskit/adf-utils) weighs > 550kB.
+* Small runtime size: `simple-adf-formatter`'s size is `< 10kB`. Atlassian's [adf-utils](https://www.npmjs.com/package/@atlaskit/adf-utils) weighs > 550kB.
 * No external dependencies: `simple-adf-formatter` has no external dependencies.
   Atlassian libraries bundle `@babel/runtime` and additional proprietary
   libraries from Atlassian.
