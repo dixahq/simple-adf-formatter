@@ -22,14 +22,9 @@
     "build": "dts build",
     "lint": "dts lint src test",
     "size": "size-limit",
-    "prepare": "husky install && dts build",
+    "prepare": "husky install",
     "start": "dts watch",
     "test": "dts test"
-  },
-  "husky": {
-    "hooks": {
-      "before-commit": "dts lint src test"
-    }
   },
   "prettier": {
     "printWidth": 80,
