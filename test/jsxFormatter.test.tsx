@@ -1,8 +1,7 @@
 /**
  * @jest-environment jsdom
  */
-import { ADFEntity } from '../dist';
-import { formatAdf, jsxFormatter } from '../src';
+import { ADFEntity, formatAdf, jsxFormatter } from '../src';
 import React from 'react';
 import { create as render } from 'react-test-renderer';
 

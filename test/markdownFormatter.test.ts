@@ -1,5 +1,4 @@
-import { ADFEntity } from '../dist';
-import { formatAdf, markdownFormatter } from '../src';
+import { ADFEntity, formatAdf, markdownFormatter } from '../src';
 
 describe(`ADF parsing`, () => {
   const adf: ADFEntity = {

@@ -1,5 +1,5 @@
 import React from 'react';
-import { Formatter } from '../types';
+import { Formatter } from '../';
 
 export const jsxFormatter: Formatter<JSX.Element> = {
   default: (_node, children) => <>{children()}</>,
