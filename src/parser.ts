@@ -4,7 +4,7 @@ import { ADFEntity, Formatter } from './types';
  * Formats the given ADF node using the given formatter
  * @param node @param formatter @returns Formatted object of type T
  */
-export const formatAdf = <T>(node: ADFEntity, formatter: Formatter<T>): T => {
+export const formatAdf = <T>(node: ADFEntity, formatter: Formatter<T>, siblingIdx = 0): T => {
   /*
    * Composes the applicable mark format functions for the current node.
    *
@@ -18,8 +18,8 @@ export const formatAdf = <T>(node: ADFEntity, formatter: Formatter<T>): T => {
         mark,
       }))
       .reduce(
-        (prev, curr) => () =>
-          curr.formatterFunction?.(curr.mark, prev, node) || content,
+        (prev, curr, idx) => () => 
+          curr.formatterFunction?.(curr.mark, prev, node, siblingIdx, idx) || content,
         () => content
       )();
 
@@ -36,7 +36,7 @@ export const formatAdf = <T>(node: ADFEntity, formatter: Formatter<T>): T => {
   const processChildren =
     (node: ADFEntity, formatter: Formatter<T>) => (): T[] =>
       node.content // all block nodes have content
-        ? node.content.map((child) => formatAdf(child, formatter))
+        ? node.content.map((child, idx) => formatAdf(child, formatter, idx))
         : [];
 
   /*
@@ -44,7 +44,6 @@ export const formatAdf = <T>(node: ADFEntity, formatter: Formatter<T>): T => {
    * and return the result.
    */
   const formatterOrDefault = formatter.nodes[node.type] || formatter.default;
-  return applyMarkup(
-    formatterOrDefault(node, processChildren(node, formatter))
-  );
+  return applyMarkup(formatterOrDefault(node, processChildren(node, formatter), siblingIdx))
+  ;
 };
