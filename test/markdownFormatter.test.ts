@@ -11,7 +11,7 @@ import {
   bulletListAdf,
   orderedListAdf,
 } from './adf.fixtures';
-describe(`ADF parsing`, () => {
+describe(`Markdown formatting`, () => {
   it('should support quotes', () => {
     const expectedMarkdown = `A quote follows.
 > Honk
@@ -20,6 +20,7 @@ The end.
 `;
     expect(formatAdf(blockquoteAdf, markdownFormatter)).toBe(expectedMarkdown);
   });
+
   it('should support headings', () => {
     const expectedMarkdown = `
 # Heading 1
