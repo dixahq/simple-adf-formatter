@@ -1,4 +1,4 @@
-import { formatAdf, markdownFormatter } from '../src';
+import { ADFEntity, formatAdf, markdownFormatter } from '../src';
 import {
   blockquoteAdf,
   inlineCodeAdf,
@@ -12,17 +12,24 @@ import {
   orderedListAdf,
 } from './adf.fixtures';
 describe(`Markdown formatting`, () => {
-  it('should support quotes', () => {
-    const expectedMarkdown = `A quote follows.
+  const tests: { feature: string; adf: ADFEntity; expectedMd: string }[] = [
+    {
+      feature: 'quotes',
+      adf: blockquoteAdf,
+      // Prevent prettier from messing up multiline strings
+      // prettier-ignore
+      expectedMd: `A quote follows.
 > Honk
 
 The end.
-`;
-    expect(formatAdf(blockquoteAdf, markdownFormatter)).toBe(expectedMarkdown);
-  });
-
-  it('should support headings', () => {
-    const expectedMarkdown = `
+`,
+    },
+    {
+      feature: 'headings',
+      adf: headingsAdf,
+      // Prevent prettier from messing up multiline strings
+      // prettier-ignore
+      expectedMd: `
 # Heading 1
 
 Text 1
@@ -47,13 +54,14 @@ Text 1.1.1.1.1
 ###### Heading 6
 
 Text 1.1.1.1.1.1
-`;
-    const result = formatAdf(headingsAdf, markdownFormatter);
-    expect(result).toBe(expectedMarkdown);
-  });
-
-  it('should support text markup', () => {
-    const expectedMarkdown = `regular
+`,
+    },
+    {
+      feature: 'text markup',
+      adf: textMarkupAdf,
+      // Prevent prettier from messing up multiline strings
+      // prettier-ignore
+      expectedMd: `regular
 *italic*
 <u>underlined</u>
 ~~strikethrough~~
@@ -61,48 +69,51 @@ Text 1.1.1.1.1.1
 sub<sub>script</sub>
 super<sup>script</sup>
 ~~***eve***~~<sub>~~***ry***~~</sub>~~***thi***~~<sup>~~***ng***~~</sup>
-`;
-    const result = formatAdf(textMarkupAdf, markdownFormatter);
-    expect(result).toBe(expectedMarkdown);
-  });
-
-  it('should support links', () => {
-    const expectedMarkdown = 'Go to [Dixa](https://dixa.com)!\n';
-    expect(formatAdf(linkAdf, markdownFormatter)).toBe(expectedMarkdown);
-  });
-
-  it('should support inline code', () => {
-    const expectedMarkdown = 'Hello `code`.\n';
-    expect(formatAdf(inlineCodeAdf, markdownFormatter)).toBe(expectedMarkdown);
-  });
-
-  it('should support bullet lists', () => {
-    const expectedMarkdown = `
+`,
+    },
+    {
+      feature: 'links',
+      adf: linkAdf,
+      expectedMd: 'Go to [Dixa](https://dixa.com)!\n',
+    },
+    {
+      feature: 'inline code',
+      adf: inlineCodeAdf,
+      expectedMd: 'Hello `code`.\n',
+    },
+    {
+      feature: 'unordered lists',
+      adf: bulletListAdf,
+      // Prevent prettier from messing up multiline strings
+      // prettier-ignore
+      expectedMd:`
 - one
 - two
 - nine
-`;
-    expect(formatAdf(bulletListAdf, markdownFormatter)).toBe(expectedMarkdown);
-  });
-
-  it('should support numbered lists', () => {
-    const expectedMarkdown = `
+`,
+    },
+    {
+      feature: 'ordered lists',
+      adf: orderedListAdf,
+      // Prevent prettier from messing up multiline strings
+      // prettier-ignore
+      expectedMd:`
 1. one
 1. two
 1. nine
-`;
-    expect(formatAdf(orderedListAdf, markdownFormatter)).toBe(expectedMarkdown);
-  });
-
-  it('should support code blocks', () => {
-    const expectedMarkdown =
-      'Code follows.\n\n```\n10 PRINT "hah hah"\n20 GOTO 10\n```\n';
-
-    expect(formatAdf(codeBlockAdf, markdownFormatter)).toBe(expectedMarkdown);
-  });
-
-  it('should support tables', () => {
-    const expectedMarkdown = `<table>
+`,
+    },
+    {
+      feature: 'code blocks',
+      adf: codeBlockAdf,
+      expectedMd: 'Code follows.\n\n```\n10 PRINT "hah hah"\n20 GOTO 10\n```\n',
+    },
+    {
+      feature: 'tables',
+      adf: tablesAdf,
+      // Prevent prettier from messing up multiline strings
+      // prettier-ignore
+      expectedMd:  `<table>
 <tr>
   <th>A
   <th>B
@@ -113,15 +124,14 @@ super<sup>script</sup>
   <td>A:2
   <td>B:2
 </table>
-`;
-
-    const result = formatAdf(tablesAdf, markdownFormatter);
-    expect(result).toBe(expectedMarkdown);
-  });
-
-  it('should transform larger documents correctly', () => {
-    const result = formatAdf(largerAdf, markdownFormatter);
-    const expectedMarkdown = `
+`,
+    },
+    {
+      feature: 'larger documents',
+      adf: largerAdf,
+      // Prevent prettier from messing up multiline strings
+      // prettier-ignore
+      expectedMd: `
 # ADF Test
 
 
@@ -165,7 +175,12 @@ Inline \`code\` and
 // a code block
 (code) => 'blocks'
 \`\`\`
-`;
-    expect(result).toBe(expectedMarkdown);
+`,
+    },
+  ];
+
+  it.each(tests)('should support $feature', (test) => {
+    const result = formatAdf(test.adf, markdownFormatter);
+    expect(result).toEqual(test.expectedMd);
   });
 });
