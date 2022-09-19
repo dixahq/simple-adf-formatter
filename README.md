@@ -21,7 +21,7 @@ application running in the browser.
   points to the deprecated `adf-builder` library.
 * Non-opinionated:
   * `simple-adf-formatter` does not make assumptions on which types your
-    formatters produce. You can create `strings`,  Markdown, HTML, React or JSX
+    formatters produce. You can create `strings`, Markdown, HTML, React or JSX
     elements, Vue components or word counts and document outlines.
   * `simple-adf-formatter` does not implement the complete ADF specification.
     While all ADF types and markup options are supported, we don't restrict
