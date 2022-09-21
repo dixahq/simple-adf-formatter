@@ -174,4 +174,195 @@ describe(`ADF parsing`, () => {
     const result = formatAdf(simpleAdf, formatter);
     expect(result).toBe('pp');
   });
+
+  it('should recurse into all children if told so in default', () => {
+    const f: Formatter<number> = {
+      default: (_e, children) =>
+        children().reduce((acc, curr) => acc + curr, 0),
+      nodes: {
+        text: (node) => node.text?.length || 0,
+      },
+      marks: {},
+    };
+
+    expect(formatAdf(simpleAdf, f)).toEqual('Hello WorldHello ADF'.length);
+  });
+
+  it('should support producing outlines', () => {
+    const adf: ADFEntity = {
+      version: 1,
+      type: 'doc',
+      content: [
+        {
+          type: 'heading',
+          attrs: {
+            level: 1,
+          },
+          content: [
+            {
+              type: 'text',
+              text: 'Heading 1',
+            },
+          ],
+        },
+        {
+          type: 'paragraph',
+          content: [
+            {
+              type: 'text',
+              text: 'Text 1',
+            },
+          ],
+        },
+        {
+          type: 'heading',
+          attrs: {
+            level: 2,
+          },
+          content: [
+            {
+              type: 'text',
+              text: 'Heading 1.1',
+            },
+          ],
+        },
+        {
+          type: 'paragraph',
+          content: [
+            {
+              type: 'text',
+              text: 'text in paras is ignored',
+            },
+          ],
+        },
+        {
+          type: 'heading',
+          attrs: {
+            level: 2,
+          },
+          content: [
+            {
+              type: 'text',
+              text: 'Heading 1.2',
+            },
+          ],
+        },
+        {
+          type: 'paragraph',
+          content: [
+            {
+              type: 'text',
+              text: 'text in paras is ignored',
+            },
+          ],
+        },
+        {
+          type: 'heading',
+          attrs: {
+            level: 1,
+          },
+          content: [
+            {
+              type: 'text',
+              text: 'Heading 2',
+            },
+          ],
+        },
+        {
+          type: 'paragraph',
+          content: [
+            {
+              type: 'text',
+              text: 'text in paras is ignored',
+            },
+          ],
+        },
+        {
+          type: 'paragraph',
+          content: [
+            {
+              type: 'text',
+              text: 'text in paras is ignored',
+            },
+          ],
+        },
+        {
+          type: 'heading',
+          attrs: {
+            level: 1,
+          },
+          content: [
+            {
+              type: 'text',
+              text: 'Heading 3',
+            },
+          ],
+        },
+        {
+          type: 'paragraph',
+          content: [
+            {
+              type: 'text',
+              text: 'text in paras is ignored',
+            },
+          ],
+        },
+        {
+          type: 'heading',
+          attrs: {
+            level: 2,
+          },
+          content: [
+            {
+              type: 'text',
+              text: 'Heading 3.1',
+            },
+          ],
+        },
+        {
+          type: 'paragraph',
+          content: [
+            {
+              type: 'text',
+              text: 'text in paras is ignored',
+            },
+          ],
+        },
+        {
+          type: 'heading',
+          attrs: {
+            level: 3,
+          },
+          content: [
+            {
+              type: 'text',
+              text: 'Heading 3.1.1',
+            },
+          ],
+        },
+      ],
+    };
+    const f: Formatter<string> = {
+      default: (_node) => '', // don't recurse into unknown nodes
+      nodes: {
+        doc: (_node, children) => children().join(''),
+        heading: (node, children) =>
+          ' '.repeat(parseInt(node.attrs?.level as string) - 1) +
+          children() +
+          '\n',
+        text: (node) => node.text || '',
+      },
+      marks: {},
+    };
+
+    //prettier-ignore
+    expect(formatAdf(adf, f)).toEqual(`Heading 1
+ Heading 1.1
+ Heading 1.2
+Heading 2
+Heading 3
+ Heading 3.1
+  Heading 3.1.1
+`);
+  });
 });
