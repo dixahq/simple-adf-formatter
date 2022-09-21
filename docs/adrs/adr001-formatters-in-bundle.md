@@ -4,7 +4,7 @@
 
 ---
 
-Formatters supporting specific frameworks have dependencies: A react formatter
+Formatters supporting specific frameworks have dependencies: A React formatter
 requires at least `JSX.Element` to be available, a Vue formatter requires - well - Vue, e.g.
 
 It is possible to declare these dependencies as optional `peer` and `dev`
