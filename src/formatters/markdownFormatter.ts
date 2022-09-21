@@ -18,6 +18,8 @@ export const markdownFormatter: Formatter<string> = {
       children()
         .map((li) => `1. ${li}`)
         .join(''),
+    // We're not emitting list items from the listItem formatter but from the
+    // ordered/bullet list nodes above, as markdown does not encapsulate list items
     //listItem: (_node, children) => '- ' + children(),
     paragraph: (_node, children) => children().join('') + '\n',
     text: (node) => node.text ?? '',
