@@ -15,7 +15,7 @@ The upside of this is are:
 
 * Consuming projects could more easily benefit from formatter updates from the
   community.
-* The developer experience is streamlined; only one-size-fits all bundle needs
+* The developer experience is streamlined; only one-size-fits-all bundle needs
   to be considered.
 
 The approach has the following drawbacks:
