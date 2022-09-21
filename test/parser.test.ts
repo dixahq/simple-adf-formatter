@@ -1,5 +1,4 @@
-import { formatAdf } from '../';
-import { ADFEntity, Formatter } from '../';
+import { ADFEntity, Formatter, formatAdf } from '../src';
 
 const simpleAdf: ADFEntity = {
   version: 1,
