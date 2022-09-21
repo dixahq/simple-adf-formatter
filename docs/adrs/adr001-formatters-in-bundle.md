@@ -49,7 +49,7 @@ Alternatives to consider:
 
 ## Decision
 
-We'll keep all formatters in the same package using th optional peer dependency approach as described above.
+We'll keep all formatters in the same package using the optional peer dependency approach as described above.
 
 We'll add technology specific example projects in the same project, but won't bundle them.
 
