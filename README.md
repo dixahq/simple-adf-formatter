@@ -50,7 +50,7 @@ To format ADF documents you need
 import { ADFEntity, formatAdf, markdownFormatter } from '../src';
 
 const adf : ADFEntity = { /* see full representation below */ }
-const markdown = renderAdf(adf, markdownFormatter)
+const markdown = formatAdf(adf, markdownFormatter)
 ```
 
 The example above will produce the following markdown given the ADF below.
