@@ -89,9 +89,10 @@ const formatter: Formatter<string> = {
 
 ## 🔧 Development
 
-* `yarn start`: Runs tests continuously.
+* `yarn start`: Runs compilation continuously on changes.
 * `yarn lint`: Lints the code base.
 * `yarn test`: Runs tests.
+* `yarn test --watch`: Runs tests continuously on changes.
 * `yarn build`: Builds the package.
 * `yarn size`: Checks the resulting bundle size.
 * `yarn analyze`: Explains the bundle size.

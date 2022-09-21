@@ -19,7 +19,7 @@ export const formatAdf = <T>(node: ADFEntity, formatter: Formatter<T>): T => {
       }))
       .reduce(
         (prev, curr) => () =>
-          curr.formatterFunction?.(curr.mark, prev) || content,
+          curr.formatterFunction?.(curr.mark, prev, node) || content,
         () => content
       )();
 
