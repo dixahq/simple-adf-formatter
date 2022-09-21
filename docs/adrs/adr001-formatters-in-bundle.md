@@ -28,7 +28,7 @@ The approach has the following drawbacks:
 
 Alternatives to consider:
 
-* One package containing both parser and formatters. This is the currently
+* One package containing both parser and formatters. This is the current
   implemented approach.
 * One package for the parser, one package per formatter.
   * `-` More packages to deal with
