@@ -49,18 +49,20 @@ Alternatives to consider:
 
 ## Decision
 
-```txt
-This section describes our response to these forces. It is stated in full sentences, with active voice. "We will …"
-```
+We'll keep all formatters in the same package using th optional peer dependency approach as described above.
+
+We'll add technology specific example projects in the same project, but won't bundle them.
+
+If we run into issues with optional peer dependencies, we'll re-evaluate.
 
 ### Rationale
 
-```txt
-Describe here the rationale for the design decision. Also indicate the rationale for significant rejected alternatives. This section may also indicate assumptions, constraints, requirements, and results of evaluations and experiments.
-```
+Even with all formatters in the bundle, its size is still rather small. 
+The benefits of having everything in one place (both from a consumption and a maintenance point of view) outweigh the slightly smaller bundle size.
 
 ## Consequences
 
-```txt
-This section describes the resulting context, after applying the decision. All consequences should be listed here, not just the "positive" ones. A particular decision may have positive, negative, and neutral consequences, but all of them affect the team and project in the future.
-```
+* The package will have dev dependencies coming from multiple frameworks.
+* Consuming projects need to provide matching peer dependencies.
+* Consumption needs to be tested/shown in example projects.
+
