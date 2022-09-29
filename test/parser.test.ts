@@ -1,5 +1,5 @@
 import { ADFEntity, Formatter, formatAdf } from '../src';
-import { headings2Adf } from './adf.fixtures';
+import { headings2Adf, simpleMarksAdf } from './adf.fixtures';
 
 const simpleAdf: ADFEntity = {
   version: 1,
