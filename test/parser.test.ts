@@ -1,4 +1,5 @@
 import { ADFEntity, Formatter, formatAdf } from '../src';
+import { headings2Adf, simpleMarksAdf } from './adf.fixtures';
 
 const simpleAdf: ADFEntity = {
   version: 1,
@@ -103,48 +104,6 @@ describe(`ADF parsing`, () => {
   });
 
   it('should apply all marks', () => {
-    const adf: ADFEntity = {
-      version: 1,
-      type: 'doc',
-      content: [
-        {
-          type: 'paragraph',
-          content: [
-            {
-              type: 'text',
-              text: 'outer ',
-              marks: [
-                {
-                  type: 'strong',
-                },
-              ],
-            },
-            {
-              type: 'text',
-              text: 'inner',
-              marks: [
-                {
-                  type: 'strong',
-                },
-                {
-                  type: 'em',
-                },
-              ],
-            },
-            {
-              type: 'text',
-              text: ' outer',
-              marks: [
-                {
-                  type: 'strong',
-                },
-              ],
-            },
-          ],
-        },
-      ],
-    };
-
     const formatter: Formatter<string> = {
       default: (_node, children) => children().join('-'),
       nodes: {},
@@ -156,7 +115,7 @@ describe(`ADF parsing`, () => {
       },
     };
 
-    expect(formatAdf(adf, formatter)).toBe('s()-e(s())-s()');
+    expect(formatAdf(simpleMarksAdf, formatter)).toBe('s()-e(s())-s()');
   });
 
   it('can exclude sub-trees per type', () => {
@@ -173,5 +132,43 @@ describe(`ADF parsing`, () => {
 
     const result = formatAdf(simpleAdf, formatter);
     expect(result).toBe('pp');
+  });
+
+  it('should recurse into all children if told so in default', () => {
+    const f: Formatter<number> = {
+      default: (_e, children) =>
+        children().reduce((acc, curr) => acc + curr, 0),
+      nodes: {
+        text: (node) => node.text?.length || 0,
+      },
+      marks: {},
+    };
+
+    expect(formatAdf(simpleAdf, f)).toEqual('Hello WorldHello ADF'.length);
+  });
+
+  it('should support producing outlines', () => {
+    const f: Formatter<string> = {
+      default: (_node) => '', // don't recurse into unknown nodes
+      nodes: {
+        doc: (_node, children) => children().join(''),
+        heading: (node, children) =>
+          ' '.repeat(parseInt(node.attrs?.level as string) - 1) +
+          children() +
+          '\n',
+        text: (node) => node.text || '',
+      },
+      marks: {},
+    };
+
+    //prettier-ignore
+    expect(formatAdf(headings2Adf, f)).toEqual(`Heading 1
+ Heading 1.1
+ Heading 1.2
+Heading 2
+Heading 3
+ Heading 3.1
+  Heading 3.1.1
+`);
   });
 });

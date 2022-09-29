@@ -1030,3 +1030,199 @@ export const orderedListAdf: ADFEntity = {
     },
   ],
 };
+
+export const headings2Adf: ADFEntity = {
+  version: 1,
+  type: 'doc',
+  content: [
+    {
+      type: 'heading',
+      attrs: {
+        level: 1,
+      },
+      content: [
+        {
+          type: 'text',
+          text: 'Heading 1',
+        },
+      ],
+    },
+    {
+      type: 'paragraph',
+      content: [
+        {
+          type: 'text',
+          text: 'Text 1',
+        },
+      ],
+    },
+    {
+      type: 'heading',
+      attrs: {
+        level: 2,
+      },
+      content: [
+        {
+          type: 'text',
+          text: 'Heading 1.1',
+        },
+      ],
+    },
+    {
+      type: 'paragraph',
+      content: [
+        {
+          type: 'text',
+          text: 'text in paras is ignored',
+        },
+      ],
+    },
+    {
+      type: 'heading',
+      attrs: {
+        level: 2,
+      },
+      content: [
+        {
+          type: 'text',
+          text: 'Heading 1.2',
+        },
+      ],
+    },
+    {
+      type: 'paragraph',
+      content: [
+        {
+          type: 'text',
+          text: 'text in paras is ignored',
+        },
+      ],
+    },
+    {
+      type: 'heading',
+      attrs: {
+        level: 1,
+      },
+      content: [
+        {
+          type: 'text',
+          text: 'Heading 2',
+        },
+      ],
+    },
+    {
+      type: 'paragraph',
+      content: [
+        {
+          type: 'text',
+          text: 'text in paras is ignored',
+        },
+      ],
+    },
+    {
+      type: 'paragraph',
+      content: [
+        {
+          type: 'text',
+          text: 'text in paras is ignored',
+        },
+      ],
+    },
+    {
+      type: 'heading',
+      attrs: {
+        level: 1,
+      },
+      content: [
+        {
+          type: 'text',
+          text: 'Heading 3',
+        },
+      ],
+    },
+    {
+      type: 'paragraph',
+      content: [
+        {
+          type: 'text',
+          text: 'text in paras is ignored',
+        },
+      ],
+    },
+    {
+      type: 'heading',
+      attrs: {
+        level: 2,
+      },
+      content: [
+        {
+          type: 'text',
+          text: 'Heading 3.1',
+        },
+      ],
+    },
+    {
+      type: 'paragraph',
+      content: [
+        {
+          type: 'text',
+          text: 'text in paras is ignored',
+        },
+      ],
+    },
+    {
+      type: 'heading',
+      attrs: {
+        level: 3,
+      },
+      content: [
+        {
+          type: 'text',
+          text: 'Heading 3.1.1',
+        },
+      ],
+    },
+  ],
+};
+
+export const simpleMarksAdf: ADFEntity = {
+  version: 1,
+  type: 'doc',
+  content: [
+    {
+      type: 'paragraph',
+      content: [
+        {
+          type: 'text',
+          text: 'outer ',
+          marks: [
+            {
+              type: 'strong',
+            },
+          ],
+        },
+        {
+          type: 'text',
+          text: 'inner',
+          marks: [
+            {
+              type: 'strong',
+            },
+            {
+              type: 'em',
+            },
+          ],
+        },
+        {
+          type: 'text',
+          text: ' outer',
+          marks: [
+            {
+              type: 'strong',
+            },
+          ],
+        },
+      ],
+    },
+  ],
+};
