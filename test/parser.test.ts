@@ -1,4 +1,5 @@
 import { ADFEntity, Formatter, formatAdf } from '../src';
+import { headings2Adf } from './adf.fixtures';
 
 const simpleAdf: ADFEntity = {
   version: 1,
@@ -103,48 +104,6 @@ describe(`ADF parsing`, () => {
   });
 
   it('should apply all marks', () => {
-    const adf: ADFEntity = {
-      version: 1,
-      type: 'doc',
-      content: [
-        {
-          type: 'paragraph',
-          content: [
-            {
-              type: 'text',
-              text: 'outer ',
-              marks: [
-                {
-                  type: 'strong',
-                },
-              ],
-            },
-            {
-              type: 'text',
-              text: 'inner',
-              marks: [
-                {
-                  type: 'strong',
-                },
-                {
-                  type: 'em',
-                },
-              ],
-            },
-            {
-              type: 'text',
-              text: ' outer',
-              marks: [
-                {
-                  type: 'strong',
-                },
-              ],
-            },
-          ],
-        },
-      ],
-    };
-
     const formatter: Formatter<string> = {
       default: (_node, children) => children().join('-'),
       nodes: {},
@@ -156,7 +115,7 @@ describe(`ADF parsing`, () => {
       },
     };
 
-    expect(formatAdf(adf, formatter)).toBe('s()-e(s())-s()');
+    expect(formatAdf(simpleMarksAdf, formatter)).toBe('s()-e(s())-s()');
   });
 
   it('can exclude sub-trees per type', () => {
@@ -189,159 +148,6 @@ describe(`ADF parsing`, () => {
   });
 
   it('should support producing outlines', () => {
-    const adf: ADFEntity = {
-      version: 1,
-      type: 'doc',
-      content: [
-        {
-          type: 'heading',
-          attrs: {
-            level: 1,
-          },
-          content: [
-            {
-              type: 'text',
-              text: 'Heading 1',
-            },
-          ],
-        },
-        {
-          type: 'paragraph',
-          content: [
-            {
-              type: 'text',
-              text: 'Text 1',
-            },
-          ],
-        },
-        {
-          type: 'heading',
-          attrs: {
-            level: 2,
-          },
-          content: [
-            {
-              type: 'text',
-              text: 'Heading 1.1',
-            },
-          ],
-        },
-        {
-          type: 'paragraph',
-          content: [
-            {
-              type: 'text',
-              text: 'text in paras is ignored',
-            },
-          ],
-        },
-        {
-          type: 'heading',
-          attrs: {
-            level: 2,
-          },
-          content: [
-            {
-              type: 'text',
-              text: 'Heading 1.2',
-            },
-          ],
-        },
-        {
-          type: 'paragraph',
-          content: [
-            {
-              type: 'text',
-              text: 'text in paras is ignored',
-            },
-          ],
-        },
-        {
-          type: 'heading',
-          attrs: {
-            level: 1,
-          },
-          content: [
-            {
-              type: 'text',
-              text: 'Heading 2',
-            },
-          ],
-        },
-        {
-          type: 'paragraph',
-          content: [
-            {
-              type: 'text',
-              text: 'text in paras is ignored',
-            },
-          ],
-        },
-        {
-          type: 'paragraph',
-          content: [
-            {
-              type: 'text',
-              text: 'text in paras is ignored',
-            },
-          ],
-        },
-        {
-          type: 'heading',
-          attrs: {
-            level: 1,
-          },
-          content: [
-            {
-              type: 'text',
-              text: 'Heading 3',
-            },
-          ],
-        },
-        {
-          type: 'paragraph',
-          content: [
-            {
-              type: 'text',
-              text: 'text in paras is ignored',
-            },
-          ],
-        },
-        {
-          type: 'heading',
-          attrs: {
-            level: 2,
-          },
-          content: [
-            {
-              type: 'text',
-              text: 'Heading 3.1',
-            },
-          ],
-        },
-        {
-          type: 'paragraph',
-          content: [
-            {
-              type: 'text',
-              text: 'text in paras is ignored',
-            },
-          ],
-        },
-        {
-          type: 'heading',
-          attrs: {
-            level: 3,
-          },
-          content: [
-            {
-              type: 'text',
-              text: 'Heading 3.1.1',
-            },
-          ],
-        },
-      ],
-    };
     const f: Formatter<string> = {
       default: (_node) => '', // don't recurse into unknown nodes
       nodes: {
@@ -356,7 +162,7 @@ describe(`ADF parsing`, () => {
     };
 
     //prettier-ignore
-    expect(formatAdf(adf, f)).toEqual(`Heading 1
+    expect(formatAdf(headings2Adf, f)).toEqual(`Heading 1
  Heading 1.1
  Heading 1.2
 Heading 2
