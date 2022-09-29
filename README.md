@@ -625,7 +625,7 @@ const jsxFormatter: Formatter<JSX.Element> = {
 <summary>Vue (using render functions)</summary>
 
 This formatter wraps the document in a `<div>`, each paragraph in a `<p>` and
-each text node in a `span` while applying a subset of possible markup properties.
+each text node in a `<span>` while applying a subset of possible markup properties.
 
 ```ts
  const f: Formatter<VNode> = {
@@ -657,8 +657,7 @@ each text node in a `span` while applying a subset of possible markup properties
 This example counts the characters of all text content. It's not the intended
 usage of formatters, but shows their flexibility nicely.
 
-Note the `default` callback: Without it, it would to nothing at it would never
-recurse into child nodes from any element including the `doc` root.
+Note the `default` callback: Without it, it would do nothing as it would never recurse into child nodes from any element including the doc root.
 
 ```ts
 const f: Formatter<number> = {
