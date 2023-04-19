@@ -80,5 +80,9 @@
     "vue": {
       "optional": true
     }
+  },
+  "resolutions": {
+    "**/@babel/core/json5": "^2.2.3",
+    "**/tsconfig-paths/json5": "^1.0.2"
   }
 }
