@@ -85,6 +85,8 @@
   },
   "resolutions": {
     "**/@babel/core/json5": "^2.2.3",
-    "**/tsconfig-paths/json5": "^1.0.2"
+    "**/ts-jest/json5": "^2.2.3",
+    "**/tsconfig-paths/json5": "^1.0.2",
+    "**/source-map-resolve/decode-uri-component": "^0.2.1"
   }
 }
