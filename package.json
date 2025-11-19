@@ -90,6 +90,7 @@
     "**/source-map-resolve/decode-uri-component": "^0.2.1",
     "esbuild": "^0.25.0",
     "braces": "3.0.3",
+    "js-yaml": "^3.14.2",
     "semver": "7.5.2",
     "ws": "7.5.10"
   }
