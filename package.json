@@ -89,10 +89,12 @@
     "**/tsconfig-paths/json5": "^1.0.2",
     "**/source-map-resolve/decode-uri-component": "^0.2.1",
     "esbuild": "^0.25.0",
+    "babel-plugin-istanbul": "^7.0.0",
     "braces": "3.0.3",
     "glob": "^10.5.0",
     "js-yaml": "^4.1.1",
     "semver": "7.5.2",
+    "test-exclude": "^7.0.0",
     "ws": "7.5.10"
   }
 }
