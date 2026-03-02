@@ -36,7 +36,7 @@
     "testEnvironment": "node"
   },
   "engines": {
-    "node": ">=18.18.0",
+    "node": ">=20",
     "npm": ">=7"
   },
   "size-limit": [
@@ -95,6 +95,8 @@
     "js-yaml": "^4.1.1",
     "semver": "7.5.2",
     "test-exclude": "^7.0.0",
-    "ws": "7.5.10"
+    "ws": "7.5.10",
+    "rollup": "^3.30.0",
+    "minimatch": ">=5.1.8"
   }
 }
