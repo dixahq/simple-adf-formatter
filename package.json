@@ -97,7 +97,6 @@
     "test-exclude": "^7.0.0",
     "ws": "7.5.10",
     "rollup": "^3.30.0",
-    "minimatch": ">=5.1.8",
-    "strip-ansi": "6.0.1"
+    "minimatch": ">=5.1.8"
   }
 }
