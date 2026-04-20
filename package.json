@@ -98,6 +98,10 @@
     "ws": "7.5.10",
     "rollup": "^3.30.0",
     "minimatch": ">=5.1.8",
-    "serialize-javascript": "^7.0.0"
+    "serialize-javascript": "^7.0.5",
+    "http-proxy-agent": "^7.0.2",
+    "https-proxy-agent": "^7.0.6",
+    "@rollup/pluginutils": "5.1.4",
+    "**/string-length/strip-ansi": "6.0.1"
   }
 }
