@@ -36,9 +36,10 @@
     "testEnvironment": "node"
   },
   "engines": {
-    "node": ">=20",
+    "node": ">=24.15.0",
     "npm": ">=7"
   },
+  "packageManager": "yarn@4.15.0",
   "size-limit": [
     {
       "path": "dist/simple-adf-formatter.cjs.production.min.js",
