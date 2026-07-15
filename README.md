@@ -1,5 +1,14 @@
 # Simple ADF Formatter
 
+> [!WARNING]
+> **This repository is archived and no longer maintained.**
+>
+> We are no longer using this project and have decided to archive it. It is now
+> read-only: there will be no further updates, bug fixes, releases, or responses
+> to issues and pull requests.
+
+---
+
 A light-weight parser and formatter framework for converting [Atlassian Document
 Format](https://developer.atlassian.com/cloud/jira/platform/apis/document/structure/) to arbitrary outputs.
 
